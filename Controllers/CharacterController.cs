@@ -29,5 +29,15 @@ namespace donet_test.Controllers
             return Ok(characters.FirstOrDefault(c => c.Id == id));
         }
 
+        [HttpPost]
+        public IActionResult AddCharacter(Character newCharacter)
+        {
+            // Add new uuid
+            newCharacter.Id = System.Guid.NewGuid();
+
+            characters.Add(newCharacter);
+            return Ok(characters);
+        }
+
     }
 }
