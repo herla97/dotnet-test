@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using donet_test.Models;
 using Microsoft.AspNetCore.Mvc;
+
+using donet_test.Models;
+using donet_test.Services.CharacterService;
 
 namespace donet_test.Controllers
 {
@@ -10,33 +12,29 @@ namespace donet_test.Controllers
     [Route("[controller]")]
     public class CharacterController: ControllerBase
     {
-        // private static Character knight = new Character();
-        private static List<Character> characters = new List<Character> {
-            new Character(),
-            // new Character{Id = System.Guid.NewGuid(), Name = "Salvador"}
-            new Character{Id = Guid.Parse("f545a9ef-1949-485d-8358-3cd27cc225f9"), Name = "Salvador"}
-        };
+
+        private readonly ICharacterService _characterService;
+        public CharacterController(ICharacterService characterService)
+        {
+            _characterService = characterService;
+        }
 
         [HttpGet("GetAll")]
         public IActionResult Get()
         {
-            return Ok(characters);
+            return Ok(_characterService.GetAllCharacters());
         }
 
         [HttpGet("{id}")]
         public IActionResult GetSingle(Guid id)
         { 
-            return Ok(characters.FirstOrDefault(c => c.Id == id));
+            return Ok(_characterService.GetCharacterById(id));
         }
 
         [HttpPost]
         public IActionResult AddCharacter(Character newCharacter)
         {
-            // Add new uuid
-            newCharacter.Id = System.Guid.NewGuid();
-
-            characters.Add(newCharacter);
-            return Ok(characters);
+            return Ok(_characterService.AddCharacter(newCharacter));
         }
 
     }
