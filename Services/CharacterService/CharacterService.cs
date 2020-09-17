@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Linq;
 
 using donet_test.Models;
@@ -14,23 +15,33 @@ namespace donet_test.Services.CharacterService
             new Character{Id = Guid.Parse("f545a9ef-1949-485d-8358-3cd27cc225f9"), Name = "Salvador"}
         };
 
-        public List<Character> AddCharacter(Character newCharacter)
+        public async Task<ServiceResponse<List<Character>>> AddCharacter(Character newCharacter)
         {
+            ServiceResponse<List<Character>> serviceResponse = new ServiceResponse<List<Character>>();
+
             // Add new uuid
             newCharacter.Id = System.Guid.NewGuid();
-
             characters.Add(newCharacter);
-            return characters;
+
+            serviceResponse.Data = characters;
+
+            return serviceResponse;
         }
 
-        public List<Character> GetAllCharacters()
+        public async Task<ServiceResponse<List<Character>>> GetAllCharacters()
         {
-            return characters;
+
+            ServiceResponse<List<Character>> serviceResponse = new ServiceResponse<List<Character>>();
+            serviceResponse.Data = characters;
+            return serviceResponse;
         }
 
-        public Character GetCharacterById(Guid id)
+        public async Task<ServiceResponse<Character>> GetCharacterById(Guid id)
         {
-            return characters.FirstOrDefault(c => c.Id == id);
+            ServiceResponse<Character> serviceResponse = new ServiceResponse<Character>();
+            serviceResponse.Data = characters.FirstOrDefault(c => c.Id == id);
+
+            return serviceResponse;
         }
     }
 }
