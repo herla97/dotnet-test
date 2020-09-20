@@ -36,3 +36,6 @@
 /Users/saherla/Desktop/netcore-course/donet-test/obj/Debug/netcoreapp3.1/netcore-course.dll
 /Users/saherla/Desktop/netcore-course/donet-test/obj/Debug/netcoreapp3.1/netcore-course.pdb
 /Users/saherla/Desktop/netcore-course/donet-test/obj/Debug/netcoreapp3.1/netcore-course.genruntimeconfig.cache
+/Users/saherla/Desktop/netcore-course/donet-test/bin/Debug/netcoreapp3.1/AutoMapper.dll
+/Users/saherla/Desktop/netcore-course/donet-test/bin/Debug/netcoreapp3.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/saherla/Desktop/netcore-course/donet-test/obj/Debug/netcoreapp3.1/netcore-course.csproj.CopyComplete

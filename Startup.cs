@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 using donet_test.Services.CharacterService;
+using AutoMapper;
 
 namespace netcore_course
 {
@@ -28,6 +29,7 @@ namespace netcore_course
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ICharacterService, CharacterService>();
         }
 
